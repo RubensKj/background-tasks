@@ -9,9 +9,9 @@ public class EnviaEmailContact {
     private static final Logger LOGGER = LoggerFactory.getLogger(EnviaEmailContact.class);
 
     public void enviaEmail() {
-        new Subscribe(EnviaEmailContact.class.getSimpleName(), 2, () -> {
-            LOGGER.info("Enviando email");
-            throw new IllegalArgumentException("Testing fallback in EnvioEmail");
-        }, true).subscribe();
+//        new Subscribe(EnviaEmailContact.class.getSimpleName(), 2, () -> {
+//            LOGGER.info("Enviando email");
+//            throw new IllegalArgumentException("Testing fallback in EnvioEmail");
+//        }, true).subscribe();
     }
 }

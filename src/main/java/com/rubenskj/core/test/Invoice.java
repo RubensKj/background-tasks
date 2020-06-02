@@ -10,7 +10,7 @@ public class Invoice {
 
     public void produce() {
         LOGGER.info("Creating a subscriber");
-        Subscribe subscribe = new Subscribe(Invoice.class.getSimpleName(), 3, this::handleCallback, false);
+        Subscribe subscribe = new Subscribe(Invoice.class.getSimpleName(), 4, this::handleCallback);
 
         LOGGER.info("Subscribing");
         subscribe.subscribe();

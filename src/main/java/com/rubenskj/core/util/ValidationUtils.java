@@ -12,4 +12,10 @@ public class ValidationUtils {
             throw new IllegalArgumentException(messageError);
         }
     }
+
+    public static void validateObject(Runnable task, String messageError) {
+        if (task == null) {
+            throw new IllegalArgumentException(messageError);
+        }
+    }
 }

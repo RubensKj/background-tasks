@@ -4,6 +4,8 @@ import com.rubenskj.core.interfaces.ICallback;
 
 public class Subscriber {
 
+    private int passed = 0;
+
     private final String subscriberName;
     private final ICallback callback;
     private boolean isFinished;
@@ -15,7 +17,7 @@ public class Subscriber {
         this.retry = retry;
         this.callback = callback;
         this.wantFallback = wantFallback;
-        this.isFinished = true;
+        this.isFinished = false;
     }
 
     public String getSubscriberName() {
@@ -50,10 +52,20 @@ public class Subscriber {
         isFinished = finished;
     }
 
+    public int getPassed() {
+        return passed;
+    }
+
+    public void setPassed(int passed) {
+        this.passed = passed;
+    }
+
     @Override
     public String toString() {
         return "Subscriber{" +
-                "subscriberName='" + subscriberName + '\'' +
+                "passed=" + passed +
+                ", subscriberName='" + subscriberName + '\'' +
+                ", callback=" + callback +
                 ", isFinished=" + isFinished +
                 ", retry=" + retry +
                 ", wantFallback=" + wantFallback +
