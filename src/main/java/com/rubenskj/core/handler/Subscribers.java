@@ -8,7 +8,6 @@ import org.slf4j.MDC;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -19,10 +18,8 @@ public class Subscribers implements ISubscribe {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Subscribers.class);
 
-    public static final Map<String, Subscriber> SUBSCRIBERS = new ConcurrentHashMap<>();
+    private static final Map<String, Subscriber> SUBSCRIBERS = new ConcurrentHashMap<>();
     private static final Map<String, ExecutorService> EXECUTORS = new HashMap<>();
-
-    private static String uuid = "";
 
     @Override
     public void handle(String id) {
@@ -33,17 +30,17 @@ public class Subscribers implements ISubscribe {
         Runnable task = createTask(id, subscriber);
 
         ExecutorService executorService = EXECUTORS.get(id);
-        executorService.submit(task, Object.class);
+        executorService.submit(task);
     }
 
     @Override
-    public void register(String id, String subscriberName, int retry, ICallback callback, boolean wantFallback) {
+    public void register(String id, String subscriberName, int retry, ICallback callback, int consumers) {
         validateString(id, "ID from subscriber cannot be null or empty");
         validateString(subscriberName, "SubscriberName cannot be null or empty");
 
-        Subscriber subscriber = new Subscriber(subscriberName, retry, callback, wantFallback);
+        Subscriber subscriber = new Subscriber(subscriberName, retry, callback);
         SUBSCRIBERS.put(id, subscriber);
-        EXECUTORS.put(id, Executors.newFixedThreadPool(2));
+        EXECUTORS.put(id, Executors.newFixedThreadPool(consumers));
     }
 
     private Runnable createTask(String id, Subscriber subscriber) {
@@ -61,7 +58,7 @@ public class Subscribers implements ISubscribe {
                 int numberPassed = subscriber.getPassed().get();
 
                 int retry = subscriber.getRetry();
-                if (subscriber.isWantFallback() && numberPassed <= retry) {
+                if (numberPassed <= retry) {
                     LOGGER.info("Putting callback in fallback");
 
                     subscriber.getPassed().getAndIncrement();

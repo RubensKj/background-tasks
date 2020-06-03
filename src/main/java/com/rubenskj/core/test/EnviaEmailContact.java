@@ -12,6 +12,6 @@ public class EnviaEmailContact {
         new Subscribe(EnviaEmailContact.class.getSimpleName(), 2, () -> {
             LOGGER.info("Enviando email");
             throw new IllegalArgumentException("Testing fallback in EnvioEmail");
-        }, true).subscribe();
+        }, 3).subscribe();
     }
 }

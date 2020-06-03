@@ -19,7 +19,7 @@ public class Invoice {
 
     public ICallback handleCallback(String email) {
         return () -> {
-            LOGGER.info("Handling callback");
+            LOGGER.info("Handling callback -> {}", email);
             throw new IllegalArgumentException("Testing fallback Invoice");
         };
     }

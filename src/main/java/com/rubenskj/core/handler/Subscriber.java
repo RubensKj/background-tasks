@@ -6,19 +6,17 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Subscriber {
 
-    private AtomicInteger passed = new AtomicInteger(0);
+    private AtomicInteger passed = new AtomicInteger(2);
 
     private final String subscriberName;
     private final ICallback callback;
     private boolean isFinished;
     private int retry;
-    private boolean wantFallback;
 
-    public Subscriber(String subscriberName, int retry, ICallback callback, boolean wantFallback) {
+    public Subscriber(String subscriberName, int retry, ICallback callback) {
         this.subscriberName = subscriberName;
         this.retry = retry;
         this.callback = callback;
-        this.wantFallback = wantFallback;
         this.isFinished = false;
     }
 
@@ -36,14 +34,6 @@ public class Subscriber {
 
     public ICallback getCallback() {
         return callback;
-    }
-
-    public boolean isWantFallback() {
-        return wantFallback;
-    }
-
-    public void setWantFallback(boolean wantFallback) {
-        this.wantFallback = wantFallback;
     }
 
     public boolean isFinished() {
@@ -66,7 +56,6 @@ public class Subscriber {
                 ", callback=" + callback +
                 ", isFinished=" + isFinished +
                 ", retry=" + retry +
-                ", wantFallback=" + wantFallback +
                 '}';
     }
 }
