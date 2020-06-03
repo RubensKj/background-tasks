@@ -14,7 +14,7 @@
 
 > Creating background tasks with subscribe 🧶
 
-<p>Background Tasks is a library that can create a subscribe with a callback, it will run the callback after you subcribe, by the way all things will be running in a second thread.</p>
+<p>Background Tasks is a library that provide a subscribe method with a callback, it will run the callback after you subscribe, however all things will be run in a second thread.</p>
 
 # 🐦 Direct Links
  * 🏗 [Dependencies](#building_construction-dependencies)
