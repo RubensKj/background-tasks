@@ -1,5 +1,5 @@
 <p align="center">
-   <img src=".github/background_task_logo.png" width="200"/>
+   <img src=".github/background_task_logo.png" width="100"/>
 </p>
 
 # Background Tasks
