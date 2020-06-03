@@ -19,41 +19,36 @@ public class Subscribers implements ISubscribe {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Subscribers.class);
 
-    public Map<String, Subscriber> SUBSCRIBERS = new ConcurrentHashMap<>();
-    public Map<String, Runnable> TASKS = new HashMap<>();
-    public Map<String, ExecutorService> EXECUTORS = new HashMap<>();
+    public static final Map<String, Subscriber> SUBSCRIBERS = new ConcurrentHashMap<>();
+    private static final Map<String, ExecutorService> EXECUTORS = new HashMap<>();
 
     private static String uuid = "";
 
     @Override
-    public void handle(String id, Subscriber subscriber) {
+    public void handle(String id) {
         validateString(id, "ID from subscriber cannot be null or empty");
 
-        final Runnable task = TASKS.get(id);
+        Subscriber subscriber = SUBSCRIBERS.get(id);
+
+        Runnable task = createTask(id, subscriber);
 
         ExecutorService executorService = EXECUTORS.get(id);
-        executorService.submit(task);
+        executorService.submit(task, Object.class);
     }
 
     @Override
-    public Subscriber register(String id, String subscriberName, int retry, ICallback callback, boolean wantFallback) {
+    public void register(String id, String subscriberName, int retry, ICallback callback, boolean wantFallback) {
         validateString(id, "ID from subscriber cannot be null or empty");
         validateString(subscriberName, "SubscriberName cannot be null or empty");
 
         Subscriber subscriber = new Subscriber(subscriberName, retry, callback, wantFallback);
         SUBSCRIBERS.put(id, subscriber);
         EXECUTORS.put(id, Executors.newFixedThreadPool(2));
-        TASKS.put(id, createTask(id, subscriber));
-
-        return subscriber;
     }
 
     private Runnable createTask(String id, Subscriber subscriber) {
         return () -> {
-            uuid = UUID.randomUUID().toString();
-            LOGGER.info("UUID -> {}", uuid);
             try {
-
                 MDC.put("subscriberListId", id);
                 MDC.put("subscriberName", subscriber.getSubscriberName());
 
@@ -63,16 +58,17 @@ public class Subscribers implements ISubscribe {
             } catch (Exception e) {
                 LOGGER.error("Error on processing subscriber -> ", e);
 
-                int numberPassed = subscriber.getPassed();
+                int numberPassed = subscriber.getPassed().get();
 
                 int retry = subscriber.getRetry();
                 if (subscriber.isWantFallback() && numberPassed <= retry) {
                     LOGGER.info("Putting callback in fallback");
 
-                    subscriber.setPassed((numberPassed++));
-                    SUBSCRIBERS.replace(id, subscriber);
+                    subscriber.getPassed().getAndIncrement();
 
-                    handle(id, subscriber);
+                    handle(id);
+                } else {
+                    finishSubscriber(id, subscriber);
                 }
             } finally {
                 MDC.remove("subscriberListId");

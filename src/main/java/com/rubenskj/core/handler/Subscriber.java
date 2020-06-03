@@ -2,9 +2,11 @@ package com.rubenskj.core.handler;
 
 import com.rubenskj.core.interfaces.ICallback;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Subscriber {
 
-    private int passed = 0;
+    private AtomicInteger passed = new AtomicInteger(0);
 
     private final String subscriberName;
     private final ICallback callback;
@@ -52,12 +54,8 @@ public class Subscriber {
         isFinished = finished;
     }
 
-    public int getPassed() {
+    public AtomicInteger getPassed() {
         return passed;
-    }
-
-    public void setPassed(int passed) {
-        this.passed = passed;
     }
 
     @Override
