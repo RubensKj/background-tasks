@@ -36,7 +36,7 @@ Adding the dependency on pom.xml
 
 ```maven
 <dependency>
-   <groupId>com.rubenskj</groupId>
+   <groupId>com.github.rubenskj</groupId>
    <artifactId>background-tasks</artifactId>
    <version>0.0.1</version>
 </dependency>
