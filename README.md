@@ -75,30 +75,30 @@ Subscribe subscribe = new Subscribe(
 );
 ```
 
-#### With retry
+---
+
+Some variation of constructor
 
 ```java
-Subscribe subscribe = new Subscribe(
+// With retry
+
+Subscribe subscribe1 = new Subscribe(
       "Name of subscribe",
       2,
       this.handleCallback("passing param")
-);                      
-```
+);    
 
-#### With consumers
+// With just consumers
 
-```java
-Subscribe subscribe = new Subscribe(
+Subscribe subscribe2 = new Subscribe(
       "Name of subscribe"
       this.handleCallback("passing param"),
       8
 );
-```
 
-#### With retry and consumers
+// With retry and consumers
 
-```java
-Subscribe subscribe = new Subscribe(
+Subscribe subscribe3 = new Subscribe(
       "Name of subscribe",
       4
       this.handleCallback("passing param"),
