@@ -6,7 +6,7 @@
 
 [![Author](https://img.shields.io/badge/author-RubensKj-00cc74?style=flat-square)](https://github.com/RubensKj)
 [![Languages](https://img.shields.io/github/languages/count/RubensKj/background-tasks-lib?color=00cc74&style=flat-square)](#)
-[![License](https://img.shields.io/github/license/RubensKj/background-tasks-lib?color=00cc74&style=flat-square)](https://github.com/RubensKj/background-tasks-lib/LICENSE)
+[![License](https://img.shields.io/github/license/RubensKj/background-tasks-lib?color=00cc74&style=flat-square)](https://github.com/RubensKj/background-tasks-lib/blob/master/LICENSE)
 [![Stars](https://img.shields.io/github/stars/RubensKj/background-tasks-lib?color=00cc74&style=flat-square)](https://github.com/RubensKj/background-tasks-lib/stargazers)
 [![Forks](https://img.shields.io/github/forks/RubensKj/background-tasks-lib?color=00cc74&style=flat-square)](https://github.com/RubensKj/background-tasks-lib/network/members)
 [![Contributors](https://img.shields.io/github/contributors/RubensKj/background-tasks-lib?color=00cc74&style=flat-square)](https://github.com/RubensKj/background-tasks-lib/graphs/contributors)
