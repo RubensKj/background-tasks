@@ -5,11 +5,11 @@
 # Background Tasks
 
 [![Author](https://img.shields.io/badge/author-RubensKj-00cc74?style=flat-square)](https://github.com/RubensKj)
-[![Languages](https://img.shields.io/github/languages/count/RubensKj/background-tasks-lib?color=00cc74&style=flat-square)](#)
-[![License](https://img.shields.io/github/license/RubensKj/background-tasks-lib?color=00cc74&style=flat-square)](https://github.com/RubensKj/background-tasks-lib/blob/master/LICENSE)
-[![Stars](https://img.shields.io/github/stars/RubensKj/background-tasks-lib?color=00cc74&style=flat-square)](https://github.com/RubensKj/background-tasks-lib/stargazers)
-[![Forks](https://img.shields.io/github/forks/RubensKj/background-tasks-lib?color=00cc74&style=flat-square)](https://github.com/RubensKj/background-tasks-lib/network/members)
-[![Contributors](https://img.shields.io/github/contributors/RubensKj/background-tasks-lib?color=00cc74&style=flat-square)](https://github.com/RubensKj/background-tasks-lib/graphs/contributors)
+[![Languages](https://img.shields.io/github/languages/count/RubensKj/background-tasks?color=00cc74&style=flat-square)](#)
+[![License](https://img.shields.io/github/license/RubensKj/background-tasks?color=00cc74&style=flat-square)](https://github.com/RubensKj/background-tasks/blob/master/LICENSE)
+[![Stars](https://img.shields.io/github/stars/RubensKj/background-tasks?color=00cc74&style=flat-square)](https://github.com/RubensKj/background-tasks/stargazers)
+[![Forks](https://img.shields.io/github/forks/RubensKj/background-tasks?color=00cc74&style=flat-square)](https://github.com/RubensKj/background-tasks/network/members)
+[![Contributors](https://img.shields.io/github/contributors/RubensKj/background-tasks?color=00cc74&style=flat-square)](https://github.com/RubensKj/background-tasks/graphs/contributors)
 
 
 > Creating background tasks with subscribe 🧶
@@ -37,7 +37,7 @@ Adding the dependency on pom.xml
 ```maven
 <dependency>
    <groupId>com.rubenskj</groupId>
-   <artifactId>background-tasks-lib</artifactId>
+   <artifactId>background-tasks</artifactId>
    <version>0.0.1</version>
 </dependency>
 ```
@@ -156,8 +156,8 @@ subscribe.subscribe();
 
 # :tada: Want to Contribute?
 
-Make your pull request following the [contributing](https://github.com/RubensKj/background-tasks-lib/blob/master/CONTRIBUTING.md) instructions and I'll accept :).
+Make your pull request following the [contributing](https://github.com/RubensKj/background-tasks/blob/master/CONTRIBUTING.md) instructions and I'll accept :).
 
 # :closed_book: License
 
-License used in this project is [MIT license](https://github.com/RubensKj/background-tasks-lib/blob/master/LICENSE)
+License used in this project is [MIT license](https://github.com/RubensKj/background-tasks/blob/master/LICENSE)
