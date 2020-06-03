@@ -13,6 +13,10 @@
     <description>Background Tasks is a library where you can subscribes callback method that will be executed in another thread</description>
     <url>https://github.com/RubensKj/background-tasks</url>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <licenses>
         <license>
             <name>MIT License</name>
