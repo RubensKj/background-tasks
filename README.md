@@ -69,10 +69,7 @@ Here is some examples of subscribe
 #### Basic
 
 ```java
-Subscribe subscribe = new Subscribe(
-      "Name of subscribe",
-      this.handleCallback("passing param")
-);
+Subscribe subscribe = new Subscribe("Name of subscribe", this.handleCallback("passing param"));
 ```
 
 ---
