@@ -1,4 +1,4 @@
-<p align="center">
+<p align="left">
    <img src=".github/background_task_logo.png" width="100"/>
 </p>
 
