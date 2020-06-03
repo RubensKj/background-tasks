@@ -14,7 +14,7 @@
 
 First off, I wanna thank you for contribute with this project.
 
-This is some directives that must be followed during the process of contributin.
+This is some directives that must be followed during the process of contributing.
 
 ### :speech_balloon: Language
 
@@ -23,7 +23,7 @@ Remain all the commits and comments in English even if you know the basics
 
 ## :card_file_box: Commits Instructions 
 
-Be sure of all commits has a header and a short description of what was done and what will change in the code.
+Be sure of all commits has a header, and a short description of what was done and what will change in the code.
 
 ### :triangular_flag_on_post: Issue
 
