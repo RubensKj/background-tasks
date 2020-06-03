@@ -4,12 +4,36 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.rubenskj</groupId>
+    <groupId>com.rubenskj.core</groupId>
     <artifactId>background-tasks</artifactId>
     <version>0.0.1</version>
+    <packaging>jar</packaging>
 
     <name>Background Tasks</name>
     <description>Background Tasks is a library where you can subscribes callback method that will be executed in another thread</description>
+    <url>https://github.com/RubensKj/background-tasks</url>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Rubens Kleinschmidt Jr</name>
+            <email>kleinschmidt.rubensjr@gmail.com</email>
+            <organization>com.github.rubenskj</organization>
+            <organizationUrl>https://github.com/RubensKj</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/RubensKj/background-tasks.git</connection>
+        <developerConnection>scm:git:ssh://github.com:rubenskj/background-tasks.git</developerConnection>
+        <url>https://github.com/RubensKj/background-tasks</url>
+    </scm>
 
     <dependencies>
         <dependency>
