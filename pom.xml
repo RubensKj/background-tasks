@@ -55,7 +55,7 @@
     <packaging>jar</packaging>
 
     <name>Background Tasks</name>
-    <description>Background Tasks is a library where you can subscribes callback method that will be executed in another
+    <description>Background Tasks is a library where you can subscribe callback method that will be executed in another
         thread
     </description>
     <url>https://github.com/RubensKj/background-tasks</url>
