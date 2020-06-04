@@ -23,9 +23,9 @@ import static com.rubenskj.core.util.ValidationUtils.validateString;
  * Subscribers make all the process of running a subscribe in a second thread.
  *
  * @author Rubens K. Junior
- * @see    Subscribe
- * @see    Subscriber
- * @since  0.1
+ * @see Subscribe
+ * @see Subscriber
+ * @since 0.1
  */
 public class Subscribers implements ISubscribe {
 
@@ -40,7 +40,6 @@ public class Subscribers implements ISubscribe {
      * <p>
      *
      * @param id the uuid generated during the creation of the {@link Subscribe}
-     *
      */
     @Override
     public void handle(String id) {
@@ -59,11 +58,9 @@ public class Subscribers implements ISubscribe {
      * Create task to be executed in another thread in {@link Subscribers#handle}.
      * <p>
      *
-     * @param id uuid that is logged in the console.
+     * @param id         uuid that is logged in the console.
      * @param subscriber that will be executed the callback.
-     *
      * @return A {@link Runnable} task to be executed.
-     *
      */
     private Runnable createTask(String id, Subscriber subscriber) {
         if (subscriber.isFinished()) {
@@ -105,9 +102,8 @@ public class Subscribers implements ISubscribe {
      * Method is to finish the subscriber and remove from the list.
      * <p>
      *
-     * @param id uuid that will be removed from {@link #SUBSCRIBERS} list.
+     * @param id         uuid that will be removed from {@link #SUBSCRIBERS} list.
      * @param subscriber ({@link Subscriber}) to set is finished.
-     *
      */
     private void finishSubscriber(String id, Subscriber subscriber) {
         subscriber.setFinished(true);
@@ -120,12 +116,11 @@ public class Subscribers implements ISubscribe {
      * the Executors to be executed when {@link Subscribe#subscribe()} is called.
      * <p>
      *
-     * @param id is passed automatically when create a {@link Subscribe} object.
+     * @param id             is passed automatically when create a {@link Subscribe} object.
      * @param subscriberName is the name for Subscribe that will be shown in the logger of console.
-     * @param retry number of times that will retry the method if throws any exception.
-     * @param callback the method will be executed.
-     * @param consumers number of threads will be created to handle the callback.
-     *
+     * @param retry          number of times that will retry the method if throws any exception.
+     * @param callback       the method will be executed.
+     * @param consumers      number of threads will be created to handle the callback.
      */
     @Override
     public void register(String id, String subscriberName, int retry, ICallback callback, int consumers) {

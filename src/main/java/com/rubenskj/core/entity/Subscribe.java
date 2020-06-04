@@ -19,7 +19,17 @@ import java.util.UUID;
  */
 public class Subscribe {
 
+    /**
+     * <p>
+     * {@link #DEFAULT_CONSUMERS} is what will be passed as default if constructor do not have the param consumers
+     * </p>
+     */
     private static final int DEFAULT_CONSUMERS = 1;
+    /**
+     * <p>
+     * {@link #DEFAULT_RETRY} is what will be passed as default if constructor do not have the param retry
+     * </p>
+     */
     private static final int DEFAULT_RETRY = 1;
 
     private final String id;

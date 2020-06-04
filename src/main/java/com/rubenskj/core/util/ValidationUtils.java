@@ -1,20 +1,37 @@
 package com.rubenskj.core.util;
 
+import com.rubenskj.core.handler.Subscribers;
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * <p>
+ * {@link ValidationUtils} is a class to validate if the params that was passed is correct.
+ * </p>
+ * <p>
+ * In general is used to validate params.
+ *
+ * @author Rubens K. Junior
+ * @see Subscribers
+ * @since 0.1
+ */
 public class ValidationUtils {
 
+    /**
+     * private constructor to not permit any instance of this class. Just use static methods.
+     */
     private ValidationUtils() {
     }
 
-    public static void validateString(String id, String messageError) {
-        if (StringUtils.isEmpty(id)) {
-            throw new IllegalArgumentException(messageError);
-        }
-    }
-
-    public static void validateObject(Runnable task, String messageError) {
-        if (task == null) {
+    /**
+     * {@link ValidationUtils#validateString(String, String)} is used to validate string if is not null
+     * and empty
+     *
+     * @param text         is the String that will be validate
+     * @param messageError is used if the text is null or empty
+     * @throws IllegalArgumentException if the text is not correct.
+     */
+    public static void validateString(String text, String messageError) {
+        if (StringUtils.isEmpty(text)) {
             throw new IllegalArgumentException(messageError);
         }
     }

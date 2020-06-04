@@ -25,6 +25,8 @@ public interface ICallback {
      * In general <code>handle</code> is the method that will be executed
      *
      * @see Subscribers createTask method
+     * 
+     * @throws Exception if something went wrong during the execution of {@link ICallback}
      */
     void handle() throws Exception;
 }
