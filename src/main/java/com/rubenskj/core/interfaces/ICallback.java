@@ -18,11 +18,11 @@ import com.rubenskj.core.handler.Subscribers;
 public interface ICallback {
 
     /**
+     * <p>
      * When an object add as attribute <code>ICallback</code>, it'll be used
      * to create a separated method, that when the <code>handle</code> method is called
      * is executed in separately thread.
-     * <p>
-     * <p>
+     * </p>
      * In general <code>handle</code> is the method that will be executed
      *
      * @throws Exception if something went wrong during the execution of {@link ICallback}
