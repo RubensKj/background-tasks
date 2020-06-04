@@ -105,8 +105,8 @@ public class Subscribers implements ISubscribe {
      * Method is to finish the subscriber and remove from the list.
      * <p>
      *
-     * @param id uuid that will be removed from {@link Subscribers#SUBSCRIBERS} list.
-     * @param subscriber to set is finished.
+     * @param id uuid that will be removed from {@link #SUBSCRIBERS} list.
+     * @param subscriber ({@link Subscriber}) to set is finished.
      *
      */
     private void finishSubscriber(String id, Subscriber subscriber) {
