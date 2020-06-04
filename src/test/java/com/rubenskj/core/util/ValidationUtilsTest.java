@@ -3,6 +3,7 @@ package com.rubenskj.core.util;
 import org.junit.Test;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 
 import static com.rubenskj.core.util.ValidationUtils.validateString;
 import static org.junit.Assert.*;
@@ -10,11 +11,12 @@ import static org.junit.Assert.*;
 public class ValidationUtilsTest {
 
     @Test
-    public void constructorTest() throws NoSuchMethodException {
+    public void constructorTest() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         Class<ValidationUtils> clazz = ValidationUtils.class;
 
         Constructor<ValidationUtils> constructor = clazz.getDeclaredConstructor();
 
+        assertThrows(IllegalAccessException.class, constructor::newInstance);
         assertFalse(constructor.isAccessible());
     }
 
