@@ -35,4 +35,18 @@ public class ValidationUtils {
             throw new IllegalArgumentException(messageError);
         }
     }
+
+    /**
+     * {@link ValidationUtils#validateIsMinus(int, String)} is used to validate if a number is lower
+     * than zero.
+     *
+     * @param number       is the number that will be validate
+     * @param messageError is used if the number is null or empty
+     * @throws IllegalArgumentException if the number is lower than zero.
+     */
+    public static void validateIsMinus(int number, String messageError) {
+        if (number < 0) {
+            throw new IllegalArgumentException(messageError);
+        }
+    }
 }

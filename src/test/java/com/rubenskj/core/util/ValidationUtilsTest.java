@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
+import static com.rubenskj.core.util.ValidationUtils.validateIsMinus;
 import static com.rubenskj.core.util.ValidationUtils.validateString;
 import static org.junit.Assert.*;
 
@@ -40,9 +41,7 @@ public class ValidationUtilsTest {
         String messageError = "Error message";
 
 
-        Exception exception = assertThrows(Exception.class, () -> {
-            validateString(text, messageError);
-        });
+        Exception exception = assertThrows(Exception.class, () -> validateString(text, messageError));
 
         assertNotEquals(null, exception);
         assertEquals(messageError, exception.getMessage());
@@ -54,9 +53,18 @@ public class ValidationUtilsTest {
         String messageError = "Error message";
 
 
-        Exception exception = assertThrows(Exception.class, () -> {
-            validateString(text, messageError);
-        });
+        Exception exception = assertThrows(Exception.class, () -> validateString(text, messageError));
+
+        assertNotEquals(null, exception);
+        assertEquals(messageError, exception.getMessage());
+    }
+
+    @Test
+    public void validateNumberIsLowerThanZero() {
+        int number = -2;
+        String messageError = "Error message";
+
+        Exception exception = assertThrows(Exception.class, () -> validateIsMinus(number, messageError));
 
         assertNotEquals(null, exception);
         assertEquals(messageError, exception.getMessage());

@@ -13,6 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import static com.rubenskj.core.util.ValidationUtils.validateIsMinus;
 import static com.rubenskj.core.util.ValidationUtils.validateString;
 
 /**
@@ -126,6 +127,8 @@ public class Subscribers implements ISubscribe {
     public void register(String id, String subscriberName, int retry, ICallback callback, int consumers) {
         validateString(id, "ID from subscriber cannot be null or empty");
         validateString(subscriberName, "SubscriberName cannot be null or empty");
+        validateIsMinus(retry, "Number of retries cannot be lower than 0.");
+        validateIsMinus(consumers, "Number of consumers cannot be lower than 0.");
 
         Subscriber subscriber = new Subscriber(subscriberName, retry, callback);
         SUBSCRIBERS.put(id, subscriber);

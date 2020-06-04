@@ -41,12 +41,11 @@ public class SubscribeTest {
     }
 
     @Test
-    public void puttingContructorToGiveAnError() {
-//        assertThrows(IllegalArgumentException.class, () -> {
-//            Subscribe subscribe = new Subscribe(null, null);
-//            subscribe.getId();
-//        });
-//        assertThrows(IllegalArgumentException.class, () -> new Subscribe(null, null, -1));
+    public void allConstructorNullTest() {
+        assertThrows(IllegalArgumentException.class, () -> new Subscribe(null, null));
+        assertThrows(IllegalArgumentException.class, () -> new Subscribe(SubscribeTest.class.getName(), null, -1));
+        assertThrows(IllegalArgumentException.class, () -> new Subscribe(SubscribeTest.class.getName(), -1, null));
+        assertThrows(IllegalArgumentException.class, () -> new Subscribe(SubscribeTest.class.getName(), -1, null, -1));
     }
 
     @Test
