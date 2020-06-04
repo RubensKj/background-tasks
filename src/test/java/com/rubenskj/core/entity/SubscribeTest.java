@@ -52,22 +52,6 @@ public class SubscribeTest {
     }
 
     @Test
-    public void subscribe() throws InterruptedException {
-        AtomicBoolean atomicBoolean = new AtomicBoolean(false);
-        String subscribeName = SubscribeTest.class.getName();
-
-        Subscribe subscribe = new Subscribe(subscribeName, () -> atomicBoolean.set(true));
-
-        subscribe.subscribe();
-
-        Thread.sleep(100);
-
-        assertNotNull(subscribe);
-        assertEquals(subscribeName, subscribe.getSubscribeName());
-        assertTrue(atomicBoolean.get());
-    }
-
-    @Test
     void retries() throws InterruptedException {
         AtomicInteger retryConscructor = new AtomicInteger(3);
 
@@ -150,5 +134,39 @@ public class SubscribeTest {
         assertThrows(Exception.class, () -> registerAsSubscribe.invoke(subscribe, id, null, null, callback, null));
         assertThrows(Exception.class, () -> registerAsSubscribe.invoke(subscribe, null, null, null, callback, null));
         assertThrows(Exception.class, () -> registerAsSubscribe.invoke(subscribe, null, null, null, null, null));
+    }
+
+    @Test
+    void getId() {
+        Subscribe subscribe = new Subscribe(SubscribeTest.class.getName(), () -> {
+        });
+
+        assertEquals(UUID.fromString(subscribe.getId()).toString(), subscribe.getId());
+    }
+
+    @Test
+    void getSubscribeName() {
+        String text = "Something";
+
+        Subscribe subscribe = new Subscribe(text, () -> {
+        });
+
+        assertEquals(text, subscribe.getSubscribeName());
+    }
+
+    @Test
+    void testSubscribe() throws InterruptedException {
+        AtomicBoolean atomicBoolean = new AtomicBoolean(false);
+        String subscribeName = SubscribeTest.class.getName();
+
+        Subscribe subscribe = new Subscribe(subscribeName, () -> atomicBoolean.set(true));
+
+        subscribe.subscribe();
+
+        Thread.sleep(100);
+
+        assertNotNull(subscribe);
+        assertEquals(subscribeName, subscribe.getSubscribeName());
+        assertTrue(atomicBoolean.get());
     }
 }
