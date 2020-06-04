@@ -104,6 +104,7 @@ public class SubscribeTest {
         Subscriber subscriber = subscribersList.get(id);
 
         assertNotNull(subscribe);
+        assertNotNull(registerAsSubscribe);
         assertEquals(SubscribeTest.class.getName(), subscriber.getSubscriberName());
         assertEquals(retryTimes, subscriber.getRetry());
         assertEquals(callback, subscriber.getCallback());
@@ -121,5 +122,28 @@ public class SubscribeTest {
         Map<String, Subscriber> subscribersList = (Map<String, Subscriber>) field.get(subscribers);
 
         return subscribersList;
+    }
+
+    @Test
+    public void validatingRegisterAsSubscribe() throws NoSuchMethodException {
+        String id = UUID.randomUUID().toString();
+        String subscribeName = SubscribeTest.class.getName();
+        ICallback callback = () -> {
+        };
+
+        Subscribe subscribe = new Subscribe(subscribeName, callback);
+
+        Class<?> clazz = subscribe.getClass();
+
+        Method registerAsSubscribe = clazz.getDeclaredMethod("registerAsSubscribe", String.class, String.class, int.class, ICallback.class, int.class);
+
+        registerAsSubscribe.setAccessible(true);
+
+        assertThrows(Exception.class, () -> registerAsSubscribe.invoke(subscribe, id, subscribeName, -1, callback, -1));
+        assertThrows(Exception.class, () -> registerAsSubscribe.invoke(subscribe, id, subscribeName, null, callback, -1));
+        assertThrows(Exception.class, () -> registerAsSubscribe.invoke(subscribe, id, subscribeName, 1, callback, null));
+        assertThrows(Exception.class, () -> registerAsSubscribe.invoke(subscribe, id, null, null, callback, null));
+        assertThrows(Exception.class, () -> registerAsSubscribe.invoke(subscribe, null, null, null, callback, null));
+        assertThrows(Exception.class, () -> registerAsSubscribe.invoke(subscribe, null, null, null, null, null));
     }
 }
