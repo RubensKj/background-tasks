@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
-public class Interfaces {
+public class ICallbackTest {
     @Test
     public void justToValidateCoveralls() {
         assertTrue(true);

@@ -23,6 +23,8 @@ public class SubscribeTest {
         });
 
         assertNotNull(subscribe);
+        assertNotNull(subscribe.getId());
+        assertEquals(SubscribeTest.class.getName(), subscribe.getSubscribeName());
         assertEquals(UUID.fromString(subscribe.getId()).toString(), subscribe.getId());
     }
 
@@ -33,7 +35,9 @@ public class SubscribeTest {
 
         assertEquals(Subscribe.class, subscribe.getClass());
         assertNotNull(subscribe);
+        assertNotNull(subscribe.getId());
         assertEquals(SubscribeTest.class.getName(), subscribe.getSubscribeName());
+        assertEquals(UUID.fromString(subscribe.getId()).toString(), subscribe.getId());
     }
 
     @Test
@@ -46,6 +50,7 @@ public class SubscribeTest {
 
         Thread.sleep(100);
 
+        assertNotNull(subscribe);
         assertTrue(atomicBoolean.get());
     }
 
@@ -62,6 +67,7 @@ public class SubscribeTest {
 
         Thread.sleep(500);
 
+        assertNotNull(subscribe);
         assertEquals(SubscribeTest.class.getName(), subscribe.getSubscribeName());
         assertEquals(0, retryConscructor.get());
     }
@@ -89,6 +95,7 @@ public class SubscribeTest {
 
         Subscriber subscriber = subscribersList.get(id);
 
+        assertNotNull(subscribe);
         assertEquals(SubscribeTest.class.getName(), subscriber.getSubscriberName());
         assertEquals(retryTimes, subscriber.getRetry());
         assertEquals(callback, subscriber.getCallback());
