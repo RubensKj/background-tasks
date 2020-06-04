@@ -41,6 +41,15 @@ public class SubscribeTest {
     }
 
     @Test
+    public void puttingContructorToGiveAnError() {
+//        assertThrows(IllegalArgumentException.class, () -> {
+//            Subscribe subscribe = new Subscribe(null, null);
+//            subscribe.getId();
+//        });
+//        assertThrows(IllegalArgumentException.class, () -> new Subscribe(null, null, -1));
+    }
+
+    @Test
     public void subscribe() throws InterruptedException {
         AtomicBoolean atomicBoolean = new AtomicBoolean(false);
 
