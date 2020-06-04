@@ -8,7 +8,7 @@
 [![Languages](https://img.shields.io/github/languages/count/RubensKj/background-tasks?color=00cc74&style=flat-square)](#)
 [![License](https://img.shields.io/github/license/RubensKj/background-tasks?color=00cc74&style=flat-square)](https://github.com/RubensKj/background-tasks/blob/master/LICENSE)
 [![Stars](https://img.shields.io/github/stars/RubensKj/background-tasks?color=00cc74&style=flat-square)](https://github.com/RubensKj/background-tasks/stargazers)
-[![Coverage Status](http://img.shields.io/coveralls/RubensKj/background-tasks/master.svg?color=00cc74&style=flat-square)](https://coveralls.io/github/RubensKj/background-tasks?branch=master)
+[![Coverage Status](http://img.shields.io/coveralls/RubensKj/background-tasks/master.svg?style=flat-square)](https://coveralls.io/github/RubensKj/background-tasks?branch=master)
 [![Maven Version](https://maven-badges.herokuapp.com/maven-central/com.github.rubenskj/background-tasks/badge.svg?color=00cc74&style=flat-square)](https://search.maven.org/artifact/com.github.rubenskj/background-tasks/2.0.0/jar)
 [![Contributors](https://img.shields.io/github/contributors/RubensKj/background-tasks?color=00cc74&style=flat-square)](https://github.com/RubensKj/background-tasks/graphs/contributors)
 
