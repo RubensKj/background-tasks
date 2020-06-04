@@ -13,8 +13,7 @@ import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class SubscribeTest {
 
@@ -23,6 +22,7 @@ public class SubscribeTest {
         Subscribe subscribe = new Subscribe(SubscribeTest.class.getName(), () -> {
         });
 
+        assertNotNull(subscribe);
         assertEquals(UUID.fromString(subscribe.getId()).toString(), subscribe.getId());
     }
 
@@ -31,6 +31,7 @@ public class SubscribeTest {
         Subscribe subscribe = new Subscribe(SubscribeTest.class.getName(), () -> {
         });
 
+        assertNotNull(subscribe);
         assertEquals(SubscribeTest.class.getName(), subscribe.getSubscribeName());
     }
 
@@ -60,6 +61,7 @@ public class SubscribeTest {
 
         Thread.sleep(500);
 
+        assertEquals(SubscribeTest.class.getName(), subscribe.getSubscribeName());
         assertEquals(0, retryConscructor.get());
     }
 

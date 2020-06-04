@@ -61,11 +61,16 @@ public class SubscribersTest {
 
         field.setAccessible(false);
 
+        Subscriber subscriberTestBase = new Subscriber(Subscribers.class.getName(), 1, getHandlerCallback());
+
         assertNotEquals(null, subscriber);
         assertEquals(
-                new Subscriber(Subscribers.class.getName(), 1, getHandlerCallback()).toString(),
+                subscriberTestBase.toString(),
                 subscriber.toString()
         );
+        assertEquals(subscriberTestBase.getRetry(), subscriber.getRetry());
+        assertNotNull(subscriber.getPassed());
+        assertEquals(subscriberTestBase.getPassed().get(), subscriber.getPassed().get());
     }
 
     private ICallback getHandlerCallback() {

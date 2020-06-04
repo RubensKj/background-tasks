@@ -11,15 +11,27 @@ import static org.junit.Assert.*;
 public class ValidationUtilsTest {
 
     @Test
-    public void constructorTest() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+    public void constructorTest() throws NoSuchMethodException {
         Class<ValidationUtils> clazz = ValidationUtils.class;
 
         Constructor<ValidationUtils> constructor = clazz.getDeclaredConstructor();
 
-        assertThrows(IllegalAccessException.class, () -> {
-            ValidationUtils validationUtils = constructor.newInstance();
-        });
+        assertThrows(IllegalAccessException.class, constructor::newInstance);
         assertFalse(constructor.isAccessible());
+    }
+
+    @Test
+    public void constructorRemovingAccessibleTest() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        Class<ValidationUtils> clazz = ValidationUtils.class;
+
+        Constructor<ValidationUtils> constructor = clazz.getDeclaredConstructor();
+
+        constructor.setAccessible(true);
+
+        ValidationUtils validationUtils = constructor.newInstance();
+
+        assertNotNull(validationUtils);
+        assertEquals(constructor.newInstance().getClass(), validationUtils.getClass());
     }
 
     @Test
