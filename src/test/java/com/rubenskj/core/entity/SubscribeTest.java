@@ -68,11 +68,6 @@ public class SubscribeTest {
     }
 
     @Test
-    public void ifSubscribeIdNotExists() {
-        assertThrows(IllegalArgumentException.class, () -> new Subscribers().handle(UUID.randomUUID().toString()));
-    }
-
-    @Test
     void retries() throws InterruptedException {
         AtomicInteger retryConscructor = new AtomicInteger(3);
 

@@ -4,7 +4,6 @@ import com.rubenskj.core.interfaces.ICallback;
 import org.junit.Test;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
@@ -77,7 +76,12 @@ public class SubscribersTest {
     }
 
     @Test
-    public void subscriberFinishedTryingToCreateTaskAgain() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, NoSuchFieldException {
+    public void ifSubscribeIdNotExists() {
+        assertThrows(IllegalArgumentException.class, () -> new Subscribers().handle(UUID.randomUUID().toString()));
+    }
+
+    @Test
+    public void subscriberFinishedTryingToCreateTaskAgain() throws IllegalAccessException, NoSuchFieldException {
         String id = UUID.randomUUID().toString();
 
         Subscriber subscriber = new Subscriber(SubscriberTest.class.getName(), 1, getHandlerCallback());
@@ -105,7 +109,7 @@ public class SubscribersTest {
     }
 
     @Test
-    public void testingRetryCatch() throws NoSuchMethodException, NoSuchFieldException, IllegalAccessException, InterruptedException {
+    public void testingRetryCatch() throws NoSuchFieldException, IllegalAccessException, InterruptedException {
         Subscribers subscribers = new Subscribers();
 
         Class<?> clazz = subscribers.getClass();
