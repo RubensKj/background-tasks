@@ -145,13 +145,16 @@ public class SubscribeTest {
     }
 
     @Test
-    void getSubscribeName() {
-        String text = "Something";
+    void subscribeWithSubscribers() throws InterruptedException {
+        AtomicBoolean atomicBoolean = new AtomicBoolean(false);
 
-        Subscribe subscribe = new Subscribe(text, () -> {
-        });
+        Subscribe subscribe = new Subscribe(SubscribeTest.class.getName(), () -> atomicBoolean.set(true));
 
-        assertEquals(text, subscribe.getSubscribeName());
+        new Subscribers().handle(subscribe.getId());
+
+        Thread.sleep(100);
+
+        assertTrue(atomicBoolean.get());
     }
 
     @Test
