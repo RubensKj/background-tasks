@@ -64,7 +64,7 @@ public class Subscribers implements ISubscribe {
      */
     private Runnable createTask(String id, Subscriber subscriber) {
         if (subscriber.isFinished()) {
-            throw new IllegalArgumentException("Cannot exeucte subscribe that is already finished. ID -> " + id);
+            throw new IllegalArgumentException("Cannot execute subscribe that is already finished. ID -> " + id);
         }
 
         return () -> {

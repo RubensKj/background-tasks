@@ -4,6 +4,7 @@ import com.rubenskj.core.interfaces.ICallback;
 import org.junit.Test;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -73,8 +74,36 @@ public class SubscribersTest {
         assertEquals(subscriberTestBase.getPassed().get(), subscriber.getPassed().get());
     }
 
+    @Test
+    public void subscriberFinishedTryingToCreateTaskAgain() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, NoSuchFieldException {
+        String id = UUID.randomUUID().toString();
+
+        Subscriber subscriber = new Subscriber(SubscriberTest.class.getName(), 1, getHandlerCallback());
+
+        subscriber.setFinished(true);
+
+        Subscribers subscribers = new Subscribers();
+
+        Class<?> clazz = subscribers.getClass();
+
+        Field field = clazz.getDeclaredField("SUBSCRIBERS");
+
+        field.setAccessible(true);
+
+        Map<String, Subscriber> subscribersList = (Map<String, Subscriber>) field.get(subscribers);
+
+        subscribersList.put(id, subscriber);
+
+        assertThrows(IllegalArgumentException.class, () -> subscribers.handle(id));
+    }
+
     private ICallback getHandlerCallback() {
         return () -> {
         };
+    }
+
+    @Test
+    public void testingRetryCatch() {
+
     }
 }

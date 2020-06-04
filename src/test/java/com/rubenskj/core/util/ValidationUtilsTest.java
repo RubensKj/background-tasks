@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 public class ValidationUtilsTest {
 
     @Test
-    public void constructorTest() throws NoSuchMethodException {
+    public void validationUtilsConstructorException() throws NoSuchMethodException {
         Class<ValidationUtils> clazz = ValidationUtils.class;
 
         Constructor<ValidationUtils> constructor = clazz.getDeclaredConstructor();
@@ -21,7 +21,7 @@ public class ValidationUtilsTest {
     }
 
     @Test
-    public void constructorRemovingAccessibleTest() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+    public void validationUtilsConstructor() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         Class<ValidationUtils> clazz = ValidationUtils.class;
 
         Constructor<ValidationUtils> constructor = clazz.getDeclaredConstructor();
