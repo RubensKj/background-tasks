@@ -27,10 +27,11 @@ public class SubscribeTest {
     }
 
     @Test
-    public void getSubscribeName() {
+    public void constructorSubscribe() {
         Subscribe subscribe = new Subscribe(SubscribeTest.class.getName(), () -> {
         });
 
+        assertEquals(Subscribe.class, subscribe.getClass());
         assertNotNull(subscribe);
         assertEquals(SubscribeTest.class.getName(), subscribe.getSubscribeName());
     }
