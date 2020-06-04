@@ -16,7 +16,9 @@ public class ValidationUtilsTest {
 
         Constructor<ValidationUtils> constructor = clazz.getDeclaredConstructor();
 
-        assertThrows(IllegalAccessException.class, constructor::newInstance);
+        assertThrows(IllegalAccessException.class, () -> {
+            ValidationUtils validationUtils = constructor.newInstance();
+        });
         assertFalse(constructor.isAccessible());
     }
 
