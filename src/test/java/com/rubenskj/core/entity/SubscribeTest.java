@@ -18,26 +18,26 @@ import static org.junit.Assert.*;
 public class SubscribeTest {
 
     @Test
-    public void getId() {
+    public void constructorSubscribe() throws NoSuchFieldException, IllegalAccessException {
         Subscribe subscribe = new Subscribe(SubscribeTest.class.getName(), () -> {
         });
 
-        assertNotNull(subscribe);
-        assertNotNull(subscribe.getId());
-        assertEquals(SubscribeTest.class.getName(), subscribe.getSubscribeName());
-        assertEquals(UUID.fromString(subscribe.getId()).toString(), subscribe.getId());
-    }
+        Subscribers subscribers = new Subscribers();
 
-    @Test
-    public void constructorSubscribe() {
-        Subscribe subscribe = new Subscribe(SubscribeTest.class.getName(), () -> {
-        });
+        Class<?> clazz = subscribers.getClass();
 
-        assertEquals(Subscribe.class, subscribe.getClass());
+        Field field = clazz.getDeclaredField("SUBSCRIBERS");
+
+        field.setAccessible(true);
+
+        Map<String, Subscriber> SUBSCRIBERS = (Map<String, Subscriber>) field.get(subscribers);
+
+        Subscriber subscriber = SUBSCRIBERS.get(subscribe.getId());
+
         assertNotNull(subscribe);
-        assertNotNull(subscribe.getId());
-        assertEquals(SubscribeTest.class.getName(), subscribe.getSubscribeName());
-        assertEquals(UUID.fromString(subscribe.getId()).toString(), subscribe.getId());
+        assertTrue(SUBSCRIBERS.containsKey(subscribe.getId()));
+        assertEquals(subscribe.getSubscribeName(), subscriber.getSubscriberName());
+        assertEquals(1, subscriber.getRetry());
     }
 
     @Test
