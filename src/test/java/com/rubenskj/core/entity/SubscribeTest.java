@@ -42,24 +42,34 @@ public class SubscribeTest {
 
     @Test
     public void allConstructorNullTest() {
-        assertThrows(IllegalArgumentException.class, () -> new Subscribe(null, null));
-        assertThrows(IllegalArgumentException.class, () -> new Subscribe(SubscribeTest.class.getName(), null, -1));
-        assertThrows(IllegalArgumentException.class, () -> new Subscribe(SubscribeTest.class.getName(), -1, null));
-        assertThrows(IllegalArgumentException.class, () -> new Subscribe(SubscribeTest.class.getName(), -1, null, -1));
+        String subscribeName = SubscribeTest.class.getName();
+
+        Subscribe subscribe = new Subscribe(subscribeName, () -> {
+        });
+
+        assertEquals(subscribeName, subscribe.getSubscribeName());
+        assertEquals(UUID.fromString(subscribe.getId()), subscribe.getId());
     }
 
     @Test
     public void subscribe() throws InterruptedException {
         AtomicBoolean atomicBoolean = new AtomicBoolean(false);
+        String subscribeName = SubscribeTest.class.getName();
 
-        Subscribe subscribe = new Subscribe(SubscribeTest.class.getName(), () -> atomicBoolean.set(true));
+        Subscribe subscribe = new Subscribe(subscribeName, () -> atomicBoolean.set(true));
 
         subscribe.subscribe();
 
         Thread.sleep(100);
 
         assertNotNull(subscribe);
+        assertEquals(subscribeName, subscribe.getSubscribeName());
         assertTrue(atomicBoolean.get());
+    }
+
+    @Test
+    public void ifSubscribeIdNotExists() {
+        assertThrows(IllegalArgumentException.class, () -> new Subscribers().handle(UUID.randomUUID().toString()));
     }
 
     @Test

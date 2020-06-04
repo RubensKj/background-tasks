@@ -46,6 +46,10 @@ public class Subscribers implements ISubscribe {
     public void handle(String id) {
         validateString(id, "ID from subscriber cannot be null or empty");
 
+        if (!SUBSCRIBERS.containsKey(id)) {
+            throw new IllegalArgumentException("Cannot find any subscribe with this id -> " + id);
+        }
+
         Subscriber subscriber = SUBSCRIBERS.get(id);
 
         Runnable task = createTask(id, subscriber);
