@@ -7,6 +7,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static org.junit.Assert.*;
@@ -103,7 +105,44 @@ public class SubscribersTest {
     }
 
     @Test
-    public void testingRetryCatch() {
+    public void testingRetryCatch() throws NoSuchMethodException, NoSuchFieldException, IllegalAccessException, InterruptedException {
+        Subscribers subscribers = new Subscribers();
 
+        Class<?> clazz = subscribers.getClass();
+
+        Field field = clazz.getDeclaredField("SUBSCRIBERS");
+        Field fieldExecutors = clazz.getDeclaredField("EXECUTORS");
+
+        field.setAccessible(true);
+        fieldExecutors.setAccessible(true);
+
+        Map<String, Subscriber> subscribersList = (Map<String, Subscriber>) field.get(subscribers);
+
+
+        String id = UUID.randomUUID().toString();
+
+        addExecutorsToExecute(id, subscribers, fieldExecutors);
+        Subscriber subscriber = new Subscriber(SubscribersTest.class.getName(), 2, this::handleCallback);
+
+        int passedBeforeExecute = subscriber.getPassed().get();
+
+        subscribersList.put(id, subscriber);
+
+        subscribers.handle(id);
+
+        Thread.sleep(100);
+
+        assertEquals((passedBeforeExecute + 1), subscriber.getPassed().get());
+        assertEquals(true, subscriber.isFinished());
+    }
+
+    private void addExecutorsToExecute(String id, Subscribers subscribers, Field fieldExecutors) throws IllegalAccessException {
+        Map<String, ExecutorService> executors = (Map<String, ExecutorService>) fieldExecutors.get(subscribers);
+
+        executors.put(id, Executors.newFixedThreadPool(1));
+    }
+
+    private void handleCallback() throws Exception {
+        throw new Exception();
     }
 }
