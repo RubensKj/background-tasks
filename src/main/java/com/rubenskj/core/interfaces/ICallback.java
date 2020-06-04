@@ -16,6 +16,7 @@ import com.rubenskj.core.handler.Subscribers;
  */
 @FunctionalInterface
 public interface ICallback {
+
     /**
      * When an object add as attribute <code>ICallback</code>, it'll be used
      * to create a separated method, that when the <code>handle</code> method is called
@@ -24,9 +25,8 @@ public interface ICallback {
      * <p>
      * In general <code>handle</code> is the method that will be executed
      *
-     * @see Subscribers createTask method
-     * 
      * @throws Exception if something went wrong during the execution of {@link ICallback}
+     * @see Subscribers createTask method
      */
     void handle() throws Exception;
 }
