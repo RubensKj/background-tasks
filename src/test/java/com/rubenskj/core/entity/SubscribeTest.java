@@ -18,8 +18,11 @@ import static org.junit.Assert.*;
 public class SubscribeTest {
 
     @Test
-    public void constructorSubscribe() throws NoSuchFieldException, IllegalAccessException {
+    public void constructorSubscribe() throws NoSuchFieldException, IllegalAccessException, InterruptedException {
+        AtomicBoolean atomicBoolean = new AtomicBoolean(false);
+
         Subscribe subscribe = new Subscribe(SubscribeTest.class.getName(), () -> {
+            atomicBoolean.set(true);
         });
 
         Subscribers subscribers = new Subscribers();
@@ -32,10 +35,15 @@ public class SubscribeTest {
 
         Map<String, Subscriber> SUBSCRIBERS = (Map<String, Subscriber>) field.get(subscribers);
 
+        subscribe.subscribe();
+
         Subscriber subscriber = SUBSCRIBERS.get(subscribe.getId());
+
+        Thread.sleep(100);
 
         assertNotNull(subscribe);
         assertTrue(SUBSCRIBERS.containsKey(subscribe.getId()));
+        assertTrue(atomicBoolean.get());
         assertEquals(subscribe.getSubscribeName(), subscriber.getSubscriberName());
         assertEquals(1, subscriber.getRetry());
     }
